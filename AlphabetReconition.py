@@ -13,20 +13,28 @@ from keras.layers import Flatten
 
 # initializing CNN
 classifier = Sequential()
+
 #adding convolutional layer
 classifier.add(Conv2D(32,(3,3), activation = "relu", input_shape = (32,32,3)))
+
 # adding pooling layer
 classifier.add(MaxPool2D(pool_size = (2,2)))
+
 # adding another convolution layer
 classifier.add(Conv2D(32,(3,3), activation = "relu"))
+
 # adding another pooling layer
 classifier.add(MaxPool2D(pool_size = (2,2)))
+
 # flatten
 classifier.add(Flatten())
+
 # full connection
 classifier.add(Dense(units = 26, activation = 'softmax'))
+
 # compiling
 classifier.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
 from keras.preprocessing.image import ImageDataGenerator
 
 # Image transformation on images
